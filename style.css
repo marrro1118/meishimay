@@ -94,13 +94,14 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  column-gap: 6px;
+  row-gap: 14px;
 }
 @media (min-width: 520px) {
-  .grid { gap: 10px; }
+  .grid { column-gap: 10px; row-gap: 18px; }
 }
 @media (min-width: 760px) {
-  .grid { gap: 14px; }
+  .grid { column-gap: 14px; row-gap: 22px; }
 }
 
 .card {
@@ -598,10 +599,37 @@ body {
   line-height: 1.6;
 }
 
+/* 注意事項 */
+.notice {
+  max-width: 720px;
+  margin: 24px auto 32px;
+  padding: 14px 18px;
+  background: #fffdf8;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #6a6256;
+  line-height: 1.7;
+}
+.notice h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+.notice ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.notice li {
+  margin: 2px 0;
+}
+
 /* 極小画面 (〜360px) の調整 */
 @media (max-width: 360px) {
   .header h1 { font-size: 18px; }
   .collection { padding: 8px 10px 24px; }
-  .grid { gap: 4px; }
+  .grid { column-gap: 4px; row-gap: 12px; }
   #answer-submit { padding: 0 14px; min-width: 60px; }
+  .notice { margin: 20px 10px 28px; padding: 12px 14px; font-size: 12px; }
 }

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>名刺コレクション</title>
+  <title>ナゾトキコレクション</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav class="main-tabs" role="tablist">
-    <button id="tab-collection" class="main-tab" role="tab" aria-selected="true" aria-controls="panel-collection" type="button">名刺コレクション</button>
+    <button id="tab-collection" class="main-tab" role="tab" aria-selected="true" aria-controls="panel-collection" type="button">ナゾトキコレクション</button>
     <button id="tab-hint" class="main-tab" role="tab" aria-selected="false" aria-controls="panel-hint" type="button">ヒント</button>
   </nav>
 
@@ -16,13 +16,13 @@
     <section class="answer-area">
       <div class="answer-row">
         <input id="answer-input" type="text" autocomplete="off" placeholder="こたえを入力" />
-        <button id="answer-submit" type="button">判定</button>
+        <button id="answer-submit" type="button">解答</button>
       </div>
       <p id="feedback" class="feedback" aria-live="polite"></p>
     </section>
 
     <header class="header">
-      <h1>名刺コレクション</h1>
+      <h1>ナゾトキコレクション</h1>
       <p class="progress" id="progress"></p>
       <button id="share-x" class="share-x" type="button" hidden>
         <span class="x-icon" aria-hidden="true">𝕏</span><span>でシェアする</span>
@@ -31,6 +31,15 @@
 
     <section class="collection">
       <div id="grid" class="grid"></div>
+    </section>
+
+    <section class="notice">
+      <h3>注意事項</h3>
+      <ul>
+        <li>ブラウザの履歴やキャッシュを削除するとコレクションは消えます</li>
+        <li>解答欄に「りせっとやりなおし」と入力するとリセットできます</li>
+        <li>別のブラウザ・別の端末ではコレクションは引き継がれません</li>
+      </ul>
     </section>
   </section>
 
@@ -68,7 +77,7 @@
           <div class="flip-face flip-back">
             <img id="modal-img-back" alt="" hidden>
             <div id="modal-back-default" class="modal-back-default">
-              <span class="back-text">名刺コレクション</span>
+              <span class="back-text">ナゾトキコレクション</span>
             </div>
           </div>
         </div>
