@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>名刺コレクション</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="main-tabs" role="tablist">
+    <button id="tab-collection" class="main-tab" role="tab" aria-selected="true" aria-controls="panel-collection" type="button">名刺コレクション</button>
+    <button id="tab-hint" class="main-tab" role="tab" aria-selected="false" aria-controls="panel-hint" type="button">ヒント</button>
+  </nav>
+
+  <section id="panel-collection" class="main-panel" role="tabpanel" aria-labelledby="tab-collection">
+    <section class="answer-area">
+      <div class="answer-row">
+        <input id="answer-input" type="text" autocomplete="off" placeholder="こたえを入力" />
+        <button id="answer-submit" type="button">判定</button>
+      </div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <header class="header">
+      <h1>名刺コレクション</h1>
+      <p class="progress" id="progress"></p>
+      <button id="share-x" class="share-x" type="button" hidden>
+        <span class="x-icon" aria-hidden="true">𝕏</span><span>でシェアする</span>
+      </button>
+    </header>
+
+    <section class="collection">
+      <div id="grid" class="grid"></div>
+    </section>
+  </section>
+
+  <section id="panel-hint" class="main-panel" role="tabpanel" aria-labelledby="tab-hint" hidden>
+    <section class="answer-area">
+      <div class="answer-row">
+        <input id="hint-name-input" type="text" autocomplete="off" placeholder="名刺の表にある名前を入力してください" />
+        <button id="hint-name-submit" type="button">解除</button>
+      </div>
+      <p id="hint-name-feedback" class="feedback" aria-live="polite"></p>
+    </section>
+    <div id="step-list" class="step-list"></div>
+  </section>
+
+  <!-- 「謎の持ち主」情報モーダル（未取得タイルタップ時） -->
+  <div id="owner-modal" class="modal" hidden>
+    <button class="modal-close" id="owner-modal-close" aria-label="閉じる">×</button>
+    <div class="modal-inner owner-modal-inner">
+      <div class="owner-card-mock">
+        <span class="owner-card-mock-mark">？</span>
+      </div>
+      <p id="owner-info-text" class="owner-info-text">ここにテキストが入ります</p>
+    </div>
+  </div>
+
+  <!-- 拡大モーダル -->
+  <div id="modal" class="modal" hidden>
+    <button class="modal-close" id="modal-close" aria-label="閉じる">×</button>
+    <div class="modal-inner">
+      <div id="flip-card" class="flip-card" role="button" tabindex="0" aria-label="タップでひっくり返す">
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <img id="modal-img" alt="">
+          </div>
+          <div class="flip-face flip-back">
+            <img id="modal-img-back" alt="" hidden>
+            <div id="modal-back-default" class="modal-back-default">
+              <span class="back-text">名刺コレクション</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="flip-hint">タップで裏返す</p>
+    </div>
+  </div>
+
+  <script src="data/cards.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
