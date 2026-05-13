@@ -184,7 +184,7 @@
   function checkAnswer() {
     const val = normalize(input.value);
     if (!val) {
-      setFeedback("解答を入力してください", "ng");
+      setFeedback("答えを入力してください", "ng");
       return;
     }
     if (val === normalize("りせっとやりなおし")) {
