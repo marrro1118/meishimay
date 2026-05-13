@@ -93,14 +93,14 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
 }
 @media (min-width: 520px) {
-  .grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .grid { gap: 10px; }
 }
 @media (min-width: 760px) {
-  .grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .grid { gap: 14px; }
 }
 
 .card {
@@ -601,7 +601,7 @@ body {
 /* 極小画面 (〜360px) の調整 */
 @media (max-width: 360px) {
   .header h1 { font-size: 18px; }
-  .collection { padding: 8px 12px 24px; }
-  .grid { gap: 8px; }
+  .collection { padding: 8px 10px 24px; }
+  .grid { gap: 4px; }
   #answer-submit { padding: 0 14px; min-width: 60px; }
 }
