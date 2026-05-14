@@ -164,7 +164,7 @@
     if (e.target === hiddenModal) closeHiddenModal();
   });
   hiddenShare.addEventListener("click", () => {
-    const text = "隠された謎に正解した！ #ナゾトキコレクション";
+    const text = "隠された謎に正解した！\n\nナゾトキ\nコレクション\n\n#アナビナゾコレ";
     const params = new URLSearchParams({ text });
     window.open(`https://twitter.com/intent/tweet?${params.toString()}`, "_blank", "noopener");
   });
@@ -193,7 +193,7 @@
     shareBtn.addEventListener("click", () => {
       const count = collected.size;
       if (count === 0) return;
-      const text = `名刺を${count}枚集めました！ #〇〇`;
+      const text = `名刺を${count}枚集めました！\n\nナゾトキ\nコレクション\n\n#アナビナゾコレ`;
       const params = new URLSearchParams({ text });
       const url = `https://twitter.com/intent/tweet?${params.toString()}`;
       window.open(url, "_blank", "noopener");
