@@ -3,7 +3,7 @@
   const HINT_UNLOCK_KEY = "meisi-hint-unlock-v1";
   const HIDDEN_KEY = "meisi-hidden-cleared-v1";
   const HIDDEN_ANSWER = "パレット";
-  const SHARE_HASHTAGS = "#アナビナゾコレ #AnotherVision #五月祭";
+  const SHARE_HASHTAGS = "#アナビナゾコレ\n#AnotherVision\n#五月祭";
   // 後で引用ポスト用のツイートURLをここに入れる（空文字なら何も付かない）
   const QUOTE_TWEET_URL = "";
   const cards = window.CARDS || [];
