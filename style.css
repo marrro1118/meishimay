@@ -97,14 +97,13 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 6px;
-  row-gap: 14px;
-}
-@media (min-width: 520px) {
-  .grid { column-gap: 10px; row-gap: 18px; }
-}
-@media (min-width: 760px) {
-  .grid { column-gap: 14px; row-gap: 22px; }
+  column-gap: 1.2%;
+  row-gap: 2.5%;
+  /* 隠し謎用の背景画像（用意できたら以下のコメントを外す） */
+  /* background-image: url("cards/grid-bg.png"); */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .card {
@@ -662,7 +661,6 @@ body {
 @media (max-width: 360px) {
   .header h1 { font-size: 18px; }
   .collection { padding: 8px 10px 24px; }
-  .grid { column-gap: 4px; row-gap: 12px; }
   #answer-submit { padding: 0 14px; min-width: 60px; }
   .notice { margin: 20px 10px 28px; padding: 12px 14px; font-size: 12px; }
 }
