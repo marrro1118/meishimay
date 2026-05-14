@@ -100,10 +100,10 @@ body {
   column-gap: 10%;
   row-gap: 22%;
   padding: 4% 10% 10%;
-  background-image: url("data/名刺_サイト背景_v2.jpg");
-  background-size: 100% 100%;
+  background-image: url("data/やじるしはいけい.jpg");
+  background-size: 100% auto;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center top;
 }
 
 .card {
