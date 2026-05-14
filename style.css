@@ -98,7 +98,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 10%;
-  row-gap: 15%;
+  row-gap: 22%;
   padding: 10%;
   background-image: url("data/名刺_サイト背景.jpg");
   background-size: 100% 100%;
