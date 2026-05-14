@@ -623,16 +623,10 @@ body {
   letter-spacing: 0.2em;
 }
 .hidden-title {
-  margin: 0 0 18px;
+  margin: 0 0 24px;
   font-size: 22px;
   color: var(--accent);
   line-height: 1.5;
-}
-.hidden-text {
-  margin: 0 0 24px;
-  font-size: 14px;
-  color: #444;
-  line-height: 1.7;
 }
 .hidden-modal-inner .share-x {
   margin-top: 0;
