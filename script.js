@@ -3,7 +3,17 @@
   const HINT_UNLOCK_KEY = "meisi-hint-unlock-v1";
   const HIDDEN_KEY = "meisi-hidden-cleared-v1";
   const HIDDEN_ANSWER = "パレット";
+  const SHARE_HASHTAGS = "#アナビナゾコレ #AnotherVision #五月祭";
+  // 後で引用ポスト用のツイートURLをここに入れる（空文字なら何も付かない）
+  const QUOTE_TWEET_URL = "";
   const cards = window.CARDS || [];
+
+  function openShareTweet(headline) {
+    const text = `${headline}\n\nナゾトキ\nコレクション\n\n${SHARE_HASHTAGS}`;
+    const params = new URLSearchParams({ text });
+    if (QUOTE_TWEET_URL) params.set("url", QUOTE_TWEET_URL);
+    window.open(`https://twitter.com/intent/tweet?${params.toString()}`, "_blank", "noopener");
+  }
 
   // ===== コレクション要素 =====
   const grid = document.getElementById("grid");
@@ -164,9 +174,7 @@
     if (e.target === hiddenModal) closeHiddenModal();
   });
   hiddenShare.addEventListener("click", () => {
-    const text = "隠された謎に正解した！\n\nナゾトキ\nコレクション\n\n#アナビナゾコレ";
-    const params = new URLSearchParams({ text });
-    window.open(`https://twitter.com/intent/tweet?${params.toString()}`, "_blank", "noopener");
+    openShareTweet("隠された謎に正解した！");
   });
 
   document.addEventListener("keydown", (e) => {
@@ -193,10 +201,7 @@
     shareBtn.addEventListener("click", () => {
       const count = collected.size;
       if (count === 0) return;
-      const text = `名刺を${count}枚集めました！\n\nナゾトキ\nコレクション\n\n#アナビナゾコレ`;
-      const params = new URLSearchParams({ text });
-      const url = `https://twitter.com/intent/tweet?${params.toString()}`;
-      window.open(url, "_blank", "noopener");
+      openShareTweet(`名刺を${count}枚集めました！`);
     });
   }
 
