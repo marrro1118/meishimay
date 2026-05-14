@@ -93,7 +93,7 @@
       if (!got) {
         const lock = document.createElement("div");
         lock.className = "lock-mark";
-        lock.textContent = "?";
+        lock.textContent = "？";
         el.appendChild(lock);
         el.addEventListener("click", () => openOwnerModal(c));
       } else {
