@@ -99,8 +99,7 @@ body {
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1.2%;
   row-gap: 2.5%;
-  /* 隠し謎用の背景画像（用意できたら以下のコメントを外す） */
-  /* background-image: url("cards/grid-bg.png"); */
+  background-image: url("data/名刺_サイト背景.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
