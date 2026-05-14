@@ -28,11 +28,6 @@ html, body {
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  background-image: url("data/名刺_サイト背景.jpg");
-  background-size: 100% auto;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: var(--bg);
 }
 
 /* 上部のタブ */
@@ -104,6 +99,10 @@ body {
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1.2%;
   row-gap: 2.5%;
+  background-image: url("data/名刺_サイト背景.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .card {
