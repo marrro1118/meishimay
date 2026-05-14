@@ -602,6 +602,42 @@ body {
   line-height: 1.6;
 }
 
+/* 隠し謎モーダル */
+.hidden-modal-inner {
+  background: linear-gradient(135deg, #ffffff 0%, #FFF5DC 100%);
+  border-radius: 14px;
+  padding: 36px 28px 28px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  border: 2px solid var(--accent-yellow);
+}
+.hidden-badge {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 4px 14px;
+  background: var(--accent-pink);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+}
+.hidden-title {
+  margin: 0 0 18px;
+  font-size: 22px;
+  color: var(--accent);
+  line-height: 1.5;
+}
+.hidden-text {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.7;
+}
+.hidden-modal-inner .share-x {
+  margin-top: 0;
+}
+
 /* 注意事項 */
 .notice {
   max-width: 720px;

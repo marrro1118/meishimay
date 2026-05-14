@@ -1,6 +1,8 @@
 (function () {
   const STORAGE_KEY = "meisi-collection-v1";
   const HINT_UNLOCK_KEY = "meisi-hint-unlock-v1";
+  const HIDDEN_KEY = "meisi-hidden-cleared-v1";
+  const HIDDEN_ANSWER = "パレット";
   const cards = window.CARDS || [];
 
   // ===== コレクション要素 =====
@@ -18,6 +20,9 @@
   const ownerModal = document.getElementById("owner-modal");
   const ownerModalClose = document.getElementById("owner-modal-close");
   const ownerInfoText = document.getElementById("owner-info-text");
+  const hiddenModal = document.getElementById("hidden-modal");
+  const hiddenModalClose = document.getElementById("hidden-modal-close");
+  const hiddenShare = document.getElementById("hidden-share");
   const OWNER_INFO_FALLBACK = "ここにテキストが入ります";
   const progressEl = document.getElementById("progress");
   const shareBtn = document.getElementById("share-x");
@@ -146,9 +151,28 @@
     if (e.target === ownerModal) closeOwnerModal();
   });
 
+  function openHiddenModal() {
+    hiddenModal.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+  function closeHiddenModal() {
+    hiddenModal.hidden = true;
+    document.body.style.overflow = "";
+  }
+  hiddenModalClose.addEventListener("click", closeHiddenModal);
+  hiddenModal.addEventListener("click", (e) => {
+    if (e.target === hiddenModal) closeHiddenModal();
+  });
+  hiddenShare.addEventListener("click", () => {
+    const text = "隠された謎に正解した！ #ナゾトキコレクション";
+    const params = new URLSearchParams({ text });
+    window.open(`https://twitter.com/intent/tweet?${params.toString()}`, "_blank", "noopener");
+  });
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      if (!modal.hidden) closeModal();
+      if (!hiddenModal.hidden) closeHiddenModal();
+      else if (!modal.hidden) closeModal();
       else if (!ownerModal.hidden) closeOwnerModal();
     }
   });
@@ -193,6 +217,13 @@
       input.value = "";
       return;
     }
+    if (val === normalize(HIDDEN_ANSWER)) {
+      localStorage.setItem(HIDDEN_KEY, "1");
+      openHiddenModal();
+      setFeedback("隠された謎に正解！", "ok");
+      input.value = "";
+      return;
+    }
     const match = cards.find((c) => normalize(c.answer) === val);
     if (!match) {
       setFeedback("不正解…もう一度！", "ng");
@@ -225,6 +256,7 @@
     // 開いているモーダルを閉じる
     if (!modal.hidden) closeModal();
     if (!ownerModal.hidden) closeOwnerModal();
+    if (!hiddenModal.hidden) closeHiddenModal();
     // コレクション
     localStorage.removeItem(STORAGE_KEY);
     collected = new Set();
@@ -238,6 +270,8 @@
       hintNameFeedback.textContent = "";
       hintNameFeedback.className = "feedback";
     }
+    // 隠し謎
+    localStorage.removeItem(HIDDEN_KEY);
   }
 
   window.__resetCollection = function () {

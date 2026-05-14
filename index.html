@@ -64,6 +64,19 @@
     </div>
   </div>
 
+  <!-- 隠し謎クリアモーダル -->
+  <div id="hidden-modal" class="modal" hidden>
+    <button class="modal-close" id="hidden-modal-close" aria-label="閉じる">×</button>
+    <div class="modal-inner hidden-modal-inner">
+      <p class="hidden-badge">SECRET</p>
+      <h2 class="hidden-title">隠された謎に<br>正解した！</h2>
+      <p class="hidden-text">おめでとうございます。<br>あなたは隠し謎を解き明かしました。</p>
+      <button id="hidden-share" class="share-x" type="button">
+        <span class="x-icon" aria-hidden="true">𝕏</span><span>でシェアする</span>
+      </button>
+    </div>
+  </div>
+
   <!-- 拡大モーダル -->
   <div id="modal" class="modal" hidden>
     <button class="modal-close" id="modal-close" aria-label="閉じる">×</button>
