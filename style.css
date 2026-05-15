@@ -32,10 +32,15 @@ body {
 
 #panel-collection {
   background-image: url("data/v5@2x.webp");
-  background-size: 100% auto;
-  background-position: center 88px;
+  /* 背景を縦に踏ん張らせる。横は100%固定、縦は「パネル幅 × この倍率」で計算。
+     元画像の自然比率は 1.217。値を大きくするほど1枚が縦に長くなる。 */
+  background-size: 100% calc(min(100vw, 390px) * 1.6);
+  /* 背景の開始Y位置。
+     注意: repeat-y では「画像1枚分の高さ」を超えて動かすと巻き戻って見えるので、小さい刻みで調整する。 */
+  background-position: center 111.5px;
   background-repeat: repeat-y;
-  min-height: 200vh;
+  /* 最低でも「画面1枚分」または「上記オフセット＋背景画像1枚分（同じ倍率1.6）」を確保。 */
+  min-height: max(100dvh, calc(111.5px + min(100vw, 390px) * 1.6));
 }
 
 /* 上部のタブ */
@@ -77,10 +82,13 @@ body {
 #panel-hint {
   padding-bottom: 32px;
   background-image: url("data/v5_なし@2x.webp");
-  background-size: 100% auto;
-  background-position: center 88px;
+  /* 背景を縦に踏ん張らせる（コレクション側と同じ倍率 1.6）。 */
+  background-size: 100% calc(min(100vw, 390px) * 1.6);
+  background-position: center 36.5px;
   background-repeat: repeat-y;
-  min-height: 200vh;
+  /* 最低でも「画面1枚分」または「背景画像1枚分（同じ倍率1.6）」を確保。
+     コンテンツが増えれば repeat-y で自然に重なって増える。 */
+  min-height: max(100dvh, calc(36.5px + min(100vw, 390px) * 1.6));
 }
 
 /* ヘッダー */
@@ -119,8 +127,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 6%;
-  row-gap: 30%;
-  padding: 0 6% 6%;
+  row-gap: calc(40% - 1.5px);
+  padding: 0 11% 6%;
   /* 背景一旦オフ
   background-image: url("data/はいけい1@2x.webp");
   background-size: 100% auto;
@@ -542,7 +550,7 @@ body {
   .header h1 { font-size: 18px; }
   .progress { font-size: 18px; }
   .collection { padding: 8px 0 24px; }
-  .grid { padding: 0 6% 6%; column-gap: 6%; row-gap: 30%; }
+  .grid { padding: 0 11% 6%; column-gap: 6%; row-gap: calc(40% - 1.5px); }
   #answer-submit { padding: 0 14px; min-width: 60px; }
   .notice { margin: 20px 10px 28px; padding: 12px 14px; font-size: 12px; }
   .feedback { font-size: 14px; }
