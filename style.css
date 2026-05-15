@@ -18,7 +18,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  background: #ffffff;
   color: var(--text);
   font-family: "コーポレート明朝 Pro", "Corporate Mincho", "Shippori Mincho", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS PMincho", serif;
   -webkit-text-size-adjust: 100%;
@@ -31,11 +31,11 @@ body {
 }
 
 #panel-collection {
-  background-image: url("data/はいけい1@2x.webp");
+  background-image: url("data/v5@2x.webp");
   background-size: 100% auto;
-  background-position: center 88px; /* answer-area の高さ分ずらす */
+  background-position: center 88px;
   background-repeat: repeat-y;
-  min-height: 100vh;
+  min-height: 200vh;
 }
 
 /* 上部のタブ */
@@ -46,7 +46,7 @@ body {
   background: #ffffff;
   z-index: 20;
   padding-top: env(safe-area-inset-top, 0px);
-  max-width: 500px;
+  max-width: 390px;
   margin: 0 auto;
 }
 .main-tab {
@@ -71,11 +71,16 @@ body {
 }
 .main-panel[hidden] { display: none; }
 .main-panel {
-  max-width: 500px;
+  max-width: 390px;
   margin: 0 auto;
 }
 #panel-hint {
   padding-bottom: 32px;
+  background-image: url("data/v5_なし@2x.webp");
+  background-size: 100% auto;
+  background-position: center 88px;
+  background-repeat: repeat-y;
+  min-height: 200vh;
 }
 
 /* ヘッダー */
@@ -113,9 +118,9 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 10%;
-  row-gap: 22%;
-  padding: 4% 10% 10%;
+  column-gap: 6%;
+  row-gap: 30%;
+  padding: 0 6% 6%;
   /* 背景一旦オフ
   background-image: url("data/はいけい1@2x.webp");
   background-size: 100% auto;
@@ -125,7 +130,7 @@ body {
 }
 
 .card {
-  aspect-ratio: 1.75 / 1;
+  aspect-ratio: 1.45 / 1;
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -357,12 +362,11 @@ body {
   background: var(--card-bg);
   border: 1px dashed var(--border);
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.7;
-  color: #999;
+  color: var(--text);
   white-space: pre-wrap;
   text-align: left;
-  font-style: italic;
 }
 
 /* アコーディオン（名刺ごと） */
@@ -492,7 +496,7 @@ body {
 .notice {
   width: calc(100% - 32px);
   max-width: 480px;
-  margin: 24px auto 32px;
+  margin: 100px auto 32px;
   padding: 14px 18px;
   background: #ffffff;
   border: 1px solid var(--border);
@@ -538,7 +542,7 @@ body {
   .header h1 { font-size: 18px; }
   .progress { font-size: 18px; }
   .collection { padding: 8px 0 24px; }
-  .grid { padding: 4% 6% 6%; column-gap: 6%; row-gap: 18%; }
+  .grid { padding: 0 6% 6%; column-gap: 6%; row-gap: 30%; }
   #answer-submit { padding: 0 14px; min-width: 60px; }
   .notice { margin: 20px 10px 28px; padding: 12px 14px; font-size: 12px; }
   .feedback { font-size: 14px; }
