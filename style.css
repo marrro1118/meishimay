@@ -30,6 +30,14 @@ body {
   min-height: 100dvh;
 }
 
+#panel-collection {
+  background-image: url("data/はいけい1@2x.webp");
+  background-size: 100% auto;
+  background-position: center 88px; /* answer-area の高さ分ずらす */
+  background-repeat: repeat-y;
+  min-height: 100vh;
+}
+
 /* 上部のタブ */
 .main-tabs {
   position: sticky;
@@ -38,6 +46,8 @@ body {
   background: #ffffff;
   z-index: 20;
   padding-top: env(safe-area-inset-top, 0px);
+  max-width: 500px;
+  margin: 0 auto;
 }
 .main-tab {
   flex: 1;
@@ -60,14 +70,21 @@ body {
   border-bottom-color: var(--accent);
 }
 .main-panel[hidden] { display: none; }
+.main-panel {
+  max-width: 500px;
+  margin: 0 auto;
+}
 #panel-hint {
   padding-bottom: 32px;
 }
 
 /* ヘッダー */
 .header {
-  text-align: center;
-  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
 }
 .header h1 {
   margin: 0;
@@ -75,7 +92,7 @@ body {
   letter-spacing: 0.08em;
 }
 .progress {
-  margin: 2px 0 0;
+  margin: 0;
   color: var(--accent);
   font-weight: bold;
   font-size: 20px;
@@ -120,11 +137,11 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* 列ごとの枠色（左から むらさき / オレンジ / 黒 / 白） */
-.grid .card:nth-child(4n+1) { border: 3px solid purple; }
-.grid .card:nth-child(4n+2) { border: 3px solid orange; }
-.grid .card:nth-child(4n+3) { border: 3px solid black; }
-.grid .card:nth-child(4n)   { border: 3px solid white; }
+/* 列ごとの枠色（取得済みのみ：左から むらさき / オレンジ / 黒 / 白） */
+.grid .card:not(.locked):nth-child(4n+1) { border: 3px solid purple; }
+.grid .card:not(.locked):nth-child(4n+2) { border: 3px solid orange; }
+.grid .card:not(.locked):nth-child(4n+3) { border: 3px solid black; }
+.grid .card:not(.locked):nth-child(4n)   { border: 3px solid white; }
 @media (hover: hover) {
   .card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 }
@@ -139,6 +156,7 @@ body {
 
 .card.locked {
   background: linear-gradient(135deg, #ffffff 0%, #D0E9F4 100%);
+  border: none;
 }
 .card.locked .lock-mark {
   position: absolute;
@@ -271,7 +289,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 8px;
+  margin-top: 0;
   padding: 8px 16px;
   background: #000;
   color: #fff;
@@ -518,7 +536,10 @@ body {
 /* 極小画面 (〜360px) の調整 */
 @media (max-width: 360px) {
   .header h1 { font-size: 18px; }
+  .progress { font-size: 18px; }
   .collection { padding: 8px 0 24px; }
+  .grid { padding: 4% 6% 6%; column-gap: 6%; row-gap: 18%; }
   #answer-submit { padding: 0 14px; min-width: 60px; }
   .notice { margin: 20px 10px 28px; padding: 12px 14px; font-size: 12px; }
+  .feedback { font-size: 14px; }
 }
