@@ -250,7 +250,8 @@ body {
 .feedback {
   margin: 6px auto 0;
   min-height: 1.2em;
-  font-size: 16px;
+  line-height: 1.2;
+  font-size: 13px;
   max-width: 720px;
   text-align: center;
 }
@@ -553,5 +554,5 @@ body {
   .grid { padding: 0 11% 6%; column-gap: 6%; row-gap: calc(40% - 1.5px); }
   #answer-submit { padding: 0 14px; min-width: 60px; }
   .notice { margin: 20px 10px 28px; padding: 12px 14px; font-size: 12px; }
-  .feedback { font-size: 14px; }
+  .feedback { font-size: 12px; }
 }

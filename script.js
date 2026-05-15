@@ -23,6 +23,7 @@
 
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-img");
+  const modalOwnerInfo = document.getElementById("modal-owner-info");
   const modalClose = document.getElementById("modal-close");
   const ownerModal = document.getElementById("owner-modal");
   const ownerModalClose = document.getElementById("owner-modal-close");
@@ -120,6 +121,8 @@
   function openModal(c) {
     modalImg.src = c.image;
     modalImg.alt = "";
+    const info = (c.ownerInfo && c.ownerInfo.trim()) || OWNER_INFO_FALLBACK;
+    modalOwnerInfo.textContent = info;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
   }
