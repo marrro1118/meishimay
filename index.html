@@ -78,21 +78,13 @@
   <div id="modal" class="modal" hidden>
     <button class="modal-close" id="modal-close" aria-label="閉じる">×</button>
     <div class="modal-inner">
-      <div id="flip-card" class="flip-card" role="button" tabindex="0" aria-label="タップでひっくり返す">
-        <div class="flip-inner">
-          <div class="flip-face flip-front">
-            <img id="modal-img" alt="">
-          </div>
-          <div class="flip-face flip-back">
-            <img id="modal-img-back" alt="" hidden>
-            <div id="modal-back-default" class="modal-back-default">
-              <span class="back-text">ナゾトキコレクション</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="flip-hint">タップで裏返す</p>
+      <img id="modal-img" class="modal-card-img" alt="">
     </div>
+  </div>
+
+  <!-- パソコンで遊べない警告（後で .is-on を付けて有効化） -->
+  <div id="pc-block" class="pc-block">
+    <p>パソコンで遊ぼうとしたら遊べません</p>
   </div>
 
   <script src="data/cards.js"></script>

@@ -4,12 +4,12 @@
   const HIDDEN_KEY = "meisi-hidden-cleared-v1";
   const HIDDEN_ANSWER = "パレット";
   const SHARE_HASHTAGS = "#アナビナゾコレ\n#AnotherVision\n#五月祭";
-  // 後で引用ポスト用のツイートURLをここに入れる（空文字なら何も付かない）
-  const QUOTE_TWEET_URL = "";
+  // 引用ポスト用のツイートURL（空文字なら何も付かない）
+  const QUOTE_TWEET_URL = "https://x.com/Another_Vision_/status/2055166285810462860?s=20";
   const cards = window.CARDS || [];
 
   function openShareTweet(headline) {
-    const text = `${headline}\n\nナゾトキ\nコレクション\n\n${SHARE_HASHTAGS}`;
+    const text = `${headline}\n\n${SHARE_HASHTAGS}`;
     const params = new URLSearchParams({ text });
     if (QUOTE_TWEET_URL) params.set("url", QUOTE_TWEET_URL);
     window.open(`https://twitter.com/intent/tweet?${params.toString()}`, "_blank", "noopener");
@@ -23,9 +23,6 @@
 
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-img");
-  const modalImgBack = document.getElementById("modal-img-back");
-  const modalBackDefault = document.getElementById("modal-back-default");
-  const flipCard = document.getElementById("flip-card");
   const modalClose = document.getElementById("modal-close");
   const ownerModal = document.getElementById("owner-modal");
   const ownerModalClose = document.getElementById("owner-modal-close");
@@ -84,8 +81,9 @@
 
   function updateProgress() {
     const count = collected.size;
+    const total = cards.length;
     if (progressEl) {
-      progressEl.textContent = count > 0 ? `${count}枚` : "";
+      progressEl.textContent = `${count} / ${total}枚`;
     }
     if (shareBtn) {
       shareBtn.hidden = count === 0;
@@ -122,24 +120,12 @@
   function openModal(c) {
     modalImg.src = c.image;
     modalImg.alt = "";
-    if (c.backImage) {
-      modalImgBack.src = c.backImage;
-      modalImgBack.alt = "";
-      modalImgBack.hidden = false;
-      modalBackDefault.hidden = true;
-    } else {
-      modalImgBack.removeAttribute("src");
-      modalImgBack.hidden = true;
-      modalBackDefault.hidden = false;
-    }
-    flipCard.classList.remove("flipped");
     modal.hidden = false;
     document.body.style.overflow = "hidden";
   }
   function closeModal() {
     modal.hidden = true;
     document.body.style.overflow = "";
-    flipCard.classList.remove("flipped");
   }
   modalClose.addEventListener("click", closeModal);
   modal.addEventListener("click", (e) => {
@@ -185,17 +171,6 @@
     }
   });
 
-  // タップでひっくり返す
-  flipCard.addEventListener("click", () => {
-    flipCard.classList.toggle("flipped");
-  });
-  flipCard.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      flipCard.classList.toggle("flipped");
-    }
-  });
-
   // Xシェア
   if (shareBtn) {
     shareBtn.addEventListener("click", () => {
@@ -205,9 +180,17 @@
     });
   }
 
+  let feedbackTimer = null;
   function setFeedback(text, cls) {
     feedback.textContent = text;
     feedback.className = "feedback" + (cls ? " " + cls : "");
+    if (feedbackTimer) clearTimeout(feedbackTimer);
+    if (text) {
+      feedbackTimer = setTimeout(() => {
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      }, 10000);
+    }
   }
 
   function checkAnswer() {
@@ -229,9 +212,12 @@
       input.value = "";
       return;
     }
-    const match = cards.find((c) => normalize(c.answer) === val);
+    const match = cards.find((c) => {
+      const answers = Array.isArray(c.answer) ? c.answer : [c.answer];
+      return answers.some((a) => a && normalize(a) === val);
+    });
     if (!match) {
-      setFeedback("不正解…もう一度！", "ng");
+      setFeedback("不正解…もう一度考えてみよう", "ng");
       return;
     }
     if (collected.has(match.id)) {
@@ -242,7 +228,7 @@
     collected.add(match.id);
     saveCollected(collected);
     render();
-    setFeedback("正解！", "ok");
+    setFeedback("正解！おめでとう！", "ok");
     input.value = "";
 
     const el = grid.querySelector(`.card[data-id="${match.id}"]`);
@@ -327,9 +313,17 @@
   });
 
   // 上の入力欄で名前を入れたらロック解除
+  let hintFeedbackTimer = null;
   function setHintFeedback(text, cls) {
     hintNameFeedback.textContent = text;
     hintNameFeedback.className = "feedback" + (cls ? " " + cls : "");
+    if (hintFeedbackTimer) clearTimeout(hintFeedbackTimer);
+    if (text) {
+      hintFeedbackTimer = setTimeout(() => {
+        hintNameFeedback.textContent = "";
+        hintNameFeedback.className = "feedback";
+      }, 10000);
+    }
   }
 
   function getCardNames(c) {
@@ -351,7 +345,7 @@
       return;
     }
     if (hintUnlocked.has(match.id)) {
-      setHintFeedback("もう解除済みです");
+      setHintFeedback("すでに解放済みです");
       hintNameInput.value = "";
       // 既存のアコーディオンを開く
       const existing = stepList.querySelector(`[data-card-id="${match.id}"]`);
@@ -431,12 +425,13 @@
     (c.hints || []).forEach((h, i) => {
       steps.push({ label: `ヒント${i + 1}`, body: h });
     });
-    if (c.answer) {
+    const primaryAnswer = Array.isArray(c.answer) ? c.answer[0] : c.answer;
+    if (primaryAnswer) {
       steps.push({
         label: "答えを見る",
         body: c.explanation
-          ? `答え：${c.answer}\n\n${c.explanation}`
-          : `答え：${c.answer}`,
+          ? `答え：${primaryAnswer}\n\n${c.explanation}`
+          : `答え：${primaryAnswer}`,
         isAnswer: true,
       });
     }

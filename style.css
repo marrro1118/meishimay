@@ -36,7 +36,6 @@ body {
   top: 0;
   display: flex;
   background: #ffffff;
-  border-bottom: 1px solid var(--border);
   z-index: 20;
   padding-top: env(safe-area-inset-top, 0px);
 }
@@ -68,7 +67,7 @@ body {
 /* ヘッダー */
 .header {
   text-align: center;
-  padding: 14px 16px 2px;
+  padding: 0 16px;
 }
 .header h1 {
   margin: 0;
@@ -79,12 +78,12 @@ body {
   margin: 2px 0 0;
   color: var(--accent);
   font-weight: bold;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 /* コレクション */
 .collection {
-  padding: 8px 0 28px;
+  padding: 0;
   max-width: none;
   margin: 0 auto;
 }
@@ -100,10 +99,12 @@ body {
   column-gap: 10%;
   row-gap: 22%;
   padding: 4% 10% 10%;
-  background-image: url("data/やじるしはいけい.jpg");
+  /* 背景一旦オフ
+  background-image: url("data/はいけい1@2x.webp");
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center top;
+  */
 }
 
 .card {
@@ -118,6 +119,12 @@ body {
   position: relative;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* 列ごとの枠色（左から むらさき / オレンジ / 黒 / 白） */
+.grid .card:nth-child(4n+1) { border: 3px solid purple; }
+.grid .card:nth-child(4n+2) { border: 3px solid orange; }
+.grid .card:nth-child(4n+3) { border: 3px solid black; }
+.grid .card:nth-child(4n)   { border: 3px solid white; }
 @media (hover: hover) {
   .card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 }
@@ -142,7 +149,8 @@ body {
   font-size: clamp(14px, 4.5vw, 24px);
   color: var(--accent);
   opacity: 0.5;
-  font-weight: bold;
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro", "Yu Gothic UI", "Yu Gothic", "Meiryo", "MS PGothic", sans-serif;
+  font-weight: 900;
 }
 .card.locked img { visibility: hidden; }
 
@@ -167,8 +175,9 @@ body {
 }
 .answer-row {
   display: flex;
+  align-items: center;
   gap: 8px;
-  max-width: 720px;
+  max-width: 480px;
   margin: 0 auto;
 }
 .answer-row input {
@@ -188,6 +197,9 @@ body {
   outline-offset: -1px;
 }
 .answer-row button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 20px;
   font-size: 16px;
   background: var(--accent);
@@ -198,6 +210,7 @@ body {
   font-weight: bold;
   min-height: 48px;
   min-width: 72px;
+  line-height: 1;
   -webkit-appearance: none;
   appearance: none;
 }
@@ -206,12 +219,12 @@ body {
 .feedback {
   margin: 6px auto 0;
   min-height: 1.2em;
-  font-size: 13px;
+  font-size: 16px;
   max-width: 720px;
   text-align: center;
 }
 .feedback.ok { color: var(--ok); font-weight: bold; }
-.feedback.ng { color: var(--ng); }
+.feedback.ng { color: var(--ng); font-weight: bold; }
 
 /* モーダル */
 .modal {
@@ -242,70 +255,15 @@ body {
   to   { transform: scale(1); opacity: 1; }
 }
 
-/* フリップカード（拡大モーダル内） */
-.flip-card {
+/* 拡大モーダル内の名刺画像 */
+.modal-card-img {
   width: 100%;
   aspect-ratio: 1.75 / 1;
-  perspective: 1400px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  background: transparent;
-}
-.flip-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-}
-.flip-card.flipped .flip-inner {
-  transform: rotateY(180deg);
-}
-.flip-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  background: var(--card-bg);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-}
-.flip-back {
-  transform: rotateY(180deg);
-}
-.flip-face img {
-  width: 100%;
-  height: 100%;
   display: block;
   object-fit: cover;
-}
-.modal-back-default {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    repeating-linear-gradient(45deg,
-      rgba(0, 118, 158, 0.08) 0 12px,
-      rgba(0, 118, 158, 0.0) 12px 24px),
-    linear-gradient(135deg, #ffffff 0%, #D0E9F4 100%);
-  border: 1px solid var(--border);
   border-radius: 14px;
-}
-.modal-back-default .back-text {
-  font-size: 18px;
-  letter-spacing: 0.18em;
-  color: var(--accent);
-  font-weight: bold;
-}
-.flip-hint {
-  margin: 12px 0 0;
-  text-align: center;
-  font-size: 12px;
-  color: rgba(255,255,255,0.85);
-  letter-spacing: 0.06em;
+  background: var(--card-bg);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
 /* Xシェアボタン */
@@ -334,13 +292,6 @@ body {
   font-weight: bold;
   line-height: 1;
 }
-.modal-info {
-  padding: 14px 18px 18px;
-  border-top: 1px solid var(--border);
-}
-.modal-name { margin: 0; font-size: 18px; font-weight: bold; }
-.modal-title { margin: 4px 0 0; color: var(--accent); font-size: 14px; }
-
 .modal-close {
   position: absolute;
   top: calc(12px + env(safe-area-inset-top, 0px));
@@ -377,7 +328,8 @@ body {
 }
 .owner-card-mock-mark {
   font-size: 80px;
-  font-weight: bold;
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro", "Yu Gothic UI", "Yu Gothic", "Meiryo", "MS PGothic", sans-serif;
+  font-weight: 900;
   color: var(--accent);
   opacity: 0.5;
 }
@@ -394,96 +346,6 @@ body {
   text-align: left;
   font-style: italic;
 }
-
-/* ヒントサイトへのFAB（右下のフローティングボタン） */
-.hint-fab {
-  position: fixed;
-  right: 16px;
-  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 12px;
-  font-weight: bold;
-  text-decoration: none;
-  line-height: 1.3;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-  z-index: 50;
-  -webkit-tap-highlight-color: transparent;
-}
-.hint-fab:active { transform: scale(0.95); }
-.hint-fab-text { display: inline-block; }
-
-/* ヒントページ */
-.hint-header {
-  position: relative;
-  text-align: center;
-  padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 12px;
-  background: #ffffff;
-  border-bottom: 1px solid var(--border);
-}
-.hint-header h1 {
-  margin: 0;
-  font-size: 18px;
-  letter-spacing: 0.08em;
-}
-.hint-back {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: bold;
-  padding: 8px 6px;
-}
-.hint-back:active { opacity: 0.7; }
-
-.hint-main {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 14px 40px;
-}
-
-/* タブ */
-.hint-tabs {
-  display: flex;
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  border-bottom: 2px solid var(--border);
-  z-index: 5;
-  margin: 0 -14px 16px;
-  padding: 0 14px;
-}
-.hint-tab {
-  flex: 1;
-  padding: 12px 8px;
-  background: transparent;
-  border: none;
-  font-size: 14px;
-  font-weight: bold;
-  color: #999;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px;
-  letter-spacing: 0.06em;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.hint-tab[aria-selected="true"] {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-.hint-tab[hidden] { display: none; }
-.hint-panel[hidden] { display: none; }
 
 /* アコーディオン（名刺ごと） */
 .step-list {
@@ -589,18 +451,6 @@ body {
   padding: 8px 0;
 }
 
-/* ヒントの名前ロック中メッセージ */
-.hint-locked-msg {
-  margin: 0;
-  padding: 12px;
-  background: #EAF4F9;
-  border-left: 3px solid var(--locked);
-  border-radius: 0 6px 6px 0;
-  font-size: 13px;
-  color: #555;
-  line-height: 1.6;
-}
-
 /* 隠し謎モーダル */
 .hidden-modal-inner {
   background: linear-gradient(135deg, #ffffff 0%, #FFF5DC 100%);
@@ -609,17 +459,6 @@ body {
   text-align: center;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   border: 2px solid var(--accent-yellow);
-}
-.hidden-badge {
-  display: inline-block;
-  margin: 0 0 14px;
-  padding: 4px 14px;
-  background: var(--accent-pink);
-  color: #fff;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 0.2em;
 }
 .hidden-title {
   margin: 0 0 24px;
@@ -633,7 +472,8 @@ body {
 
 /* 注意事項 */
 .notice {
-  max-width: 720px;
+  width: calc(100% - 32px);
+  max-width: 480px;
   margin: 24px auto 32px;
   padding: 14px 18px;
   background: #ffffff;
@@ -656,6 +496,24 @@ body {
 .notice li {
   margin: 2px 0;
 }
+
+/* パソコンで遊ぼうとしたら遊べません（後で表示する） */
+.pc-block {
+  display: none; /* 後で有効化する */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  color: #fff;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+}
+.pc-block.is-on { display: flex; }
 
 /* 極小画面 (〜360px) の調整 */
 @media (max-width: 360px) {
